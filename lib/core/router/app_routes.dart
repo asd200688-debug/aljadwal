@@ -2,6 +2,9 @@ class AppRoutes {
   // Welcome
   static const String welcome = '/';
 
+  // Authentication
+  static const String login = '/login';
+  static const String signup = '/signup';
   // Home
   static const String home = '/home';
 

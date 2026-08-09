@@ -86,7 +86,7 @@ class WelcomePage extends StatelessWidget {
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.home);
+                            Navigator.pushNamed(context, AppRoutes.login);
                           },
                           child: const SizedBox.expand(),
                         ),
@@ -116,7 +116,7 @@ class WelcomePage extends StatelessWidget {
                         child: GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: () {
-                            debugPrint('Continue as Guest');
+                            Navigator.pushNamed(context, AppRoutes.home);
                           },
                           child: const SizedBox.expand(),
                         ),

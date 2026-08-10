@@ -3,6 +3,7 @@ import 'package:aljadwal/core/router/app_routes.dart';
 import 'package:aljadwal/features/home/pages/home_page.dart';
 import 'package:aljadwal/features/welcome/pages/welcome_page.dart';
 import 'package:aljadwal/features/auth/pages/login_page.dart';
+import 'package:aljadwal/features/auth/pages/signup_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -16,6 +17,11 @@ class RouteGenerator {
       // =========================================================
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => const LoginPage());
+      // =========================================================
+      // Signup
+      // =========================================================
+      case AppRoutes.signup:
+        return MaterialPageRoute(builder: (_) => const SignupPage());
       // =========================================================
       // Home
       // =========================================================

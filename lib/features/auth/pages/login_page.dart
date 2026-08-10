@@ -43,7 +43,11 @@ class LoginPage extends StatelessWidget {
                     height: 70 * scale,
                     child: _TouchArea(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          AppRoutes.welcome,
+                          (route) => false,
+                        );
                       },
                     ),
                   ),
@@ -97,10 +101,10 @@ class LoginPage extends StatelessWidget {
                   // تسجيل الدخول
                   // =====================================================
                   Positioned(
-                    left: 60 * scale,
-                    top: 1110 * scale,
-                    width: 730 * scale,
-                    height: 82 * scale,
+                    left: 78 * scale,
+                    top: 1139 * scale,
+                    width: 689 * scale,
+                    height: 78 * scale,
                     child: _TouchArea(
                       onTap: () {
                         debugPrint('Login');
@@ -168,14 +172,16 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
 
-                  // =====================================================
+                  // =========================================================
                   // إنشاء حساب جديد
-                  // =====================================================
+                  // Figma: X 24 / Y 689 / W 354 / H 50
+                  // Converted to 851 × 1848
+                  // =========================================================
                   Positioned(
-                    left: 250 * scale,
-                    top: 1420 * scale,
-                    width: 350 * scale,
-                    height: 80 * scale,
+                    left: 51 * scale,
+                    top: 1457 * scale,
+                    width: 749 * scale,
+                    height: 106 * scale,
                     child: _TouchArea(
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.signup);

@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:aljadwal/core/router/app_routes.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  // =========================================================
+  // حقل الاسم
+  // =========================================================
+  final TextEditingController _nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +77,57 @@ class SignupPage extends StatelessWidget {
                   ),
 
                   // =================================================
-                  // الاسم
-                  // Figma: X 30 / Y 257 / W 341 / H 35
+                  // الاسم - TextField حقيقي
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(30),
                     top: y(257),
                     width: w(341),
                     height: h(35),
-                    label: 'الاسم',
-                    onTap: () {
-                      debugPrint('Signup: الاسم');
-                    },
+                    child: Stack(
+                      children: [
+                        // تغطية كلمة "الاسم الكامل" الموجودة داخل الصورة
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          width: w(150),
+                          height: h(35),
+                          child: Container(
+                            color: const Color.fromARGB(
+                              164,
+                              43,
+                              38,
+                              38,
+                            ).withValues(alpha: 0.78),
+                          ),
+                        ),
+
+                        // حقل الكتابة الحقيقي
+                        TextField(
+                          controller: _nameController,
+                          textAlign: TextAlign.right,
+                          textDirection: TextDirection.rtl,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: TextStyle(
+                            fontSize: 18 * (screenWidth / figmaWidth),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          cursorColor: Colors.white,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                            isDense: true,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
 
                   // =================================================
                   // رقم الجوال
-                  // Figma: X 30 / Y 306 / W 341 / H 35
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -92,7 +142,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // البريد الإلكتروني
-                  // Figma: X 30 / Y 355 / W 341 / H 35
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -107,7 +156,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // كلمة المرور
-                  // Figma: X 30 / Y 404 / W 341 / H 35
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -122,7 +170,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // تأكيد كلمة المرور
-                  // Figma: X 30 / Y 453 / W 341 / H 35
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -137,7 +184,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // تاريخ الميلاد - السنة
-                  // Figma: X 30 / Y 502 / W 86 / H 34
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -152,7 +198,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // تاريخ الميلاد - الشهر
-                  // Figma: X 124 / Y 502 / W 71 / H 34
                   // =================================================
                   _hitArea(
                     left: x(124),
@@ -167,7 +212,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // تاريخ الميلاد - اليوم
-                  // Figma: X 204 / Y 502 / W 77 / H 34
                   // =================================================
                   _hitArea(
                     left: x(204),
@@ -182,7 +226,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // الجنس - أنثى
-                  // Figma: X 30 / Y 550 / W 122 / H 34
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -197,7 +240,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // الجنس - ذكر
-                  // Figma: X 163 / Y 550 / W 119 / H 34
                   // =================================================
                   _hitArea(
                     left: x(163),
@@ -212,7 +254,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // الموافقة على الشروط والأحكام
-                  // Figma: X 354 / Y 607 / W 13 / H 13
                   // =================================================
                   _hitArea(
                     left: x(354),
@@ -227,7 +268,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // إنشاء الحساب
-                  // Figma: X 30 / Y 633 / W 341 / H 42
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -241,8 +281,7 @@ class SignupPage extends StatelessWidget {
                   ),
 
                   // =================================================
-                  // إنشاء الحساب بواسطة Apple
-                  // Figma: X 30 / Y 723 / W 75 / H 59
+                  // Apple
                   // =================================================
                   _hitArea(
                     left: x(30),
@@ -256,8 +295,7 @@ class SignupPage extends StatelessWidget {
                   ),
 
                   // =================================================
-                  // إنشاء الحساب بواسطة Google
-                  // Figma: X 116 / Y 723 / W 75 / H 59
+                  // Google
                   // =================================================
                   _hitArea(
                     left: x(116),
@@ -271,8 +309,7 @@ class SignupPage extends StatelessWidget {
                   ),
 
                   // =================================================
-                  // إنشاء الحساب بواسطة STC
-                  // Figma: X 205 / Y 723 / W 75 / H 59
+                  // STC
                   // =================================================
                   _hitArea(
                     left: x(205),
@@ -286,8 +323,7 @@ class SignupPage extends StatelessWidget {
                   ),
 
                   // =================================================
-                  // إنشاء الحساب بواسطة رقم الجوال
-                  // Figma: X 294 / Y 723 / W 75 / H 59
+                  // رقم الجوال
                   // =================================================
                   _hitArea(
                     left: x(294),
@@ -302,7 +338,6 @@ class SignupPage extends StatelessWidget {
 
                   // =================================================
                   // لدي حساب - تسجيل الدخول
-                  // Figma: X 163 / Y 827 / W 68 / H 14
                   // =================================================
                   _hitArea(
                     left: x(163),

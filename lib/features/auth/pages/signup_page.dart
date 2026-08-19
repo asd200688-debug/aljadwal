@@ -13,6 +13,7 @@ class _SignupPageState extends State<SignupPage> {
   // حقل الاسم
   // =========================================================
   final TextEditingController _nameController = TextEditingController();
+  int? _selectedDay;
 
   @override
   void dispose() {
@@ -84,104 +85,191 @@ class _SignupPageState extends State<SignupPage> {
                     top: y(257),
                     width: w(341),
                     height: h(35),
-                    child: Stack(
-                      children: [
-                        // تغطية كلمة "الاسم الكامل" الموجودة داخل الصورة
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          width: w(150),
-                          height: h(35),
-                          child: Container(
-                            color: const Color.fromARGB(
-                              164,
-                              43,
-                              38,
-                              38,
-                            ).withValues(alpha: 0.78),
-                          ),
+                    child: Padding(
+                      // نترك مساحة للرمز الموجود في يمين الصورة
+                      padding: EdgeInsets.only(right: w(42)),
+                      child: TextField(
+                        controller: _nameController,
+                        textAlign: TextAlign.right,
+                        textDirection: TextDirection.rtl,
+                        textAlignVertical: TextAlignVertical.center,
+                        style: TextStyle(
+                          fontSize: 11 * (screenWidth / figmaWidth),
+                          color: const Color.fromARGB(255, 135, 141, 137),
+                          fontWeight: FontWeight.w500,
                         ),
-
-                        // حقل الكتابة الحقيقي
-                        TextField(
-                          controller: _nameController,
-                          textAlign: TextAlign.right,
-                          textDirection: TextDirection.rtl,
-                          textAlignVertical: TextAlignVertical.center,
-                          style: TextStyle(
-                            fontSize: 18 * (screenWidth / figmaWidth),
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                        cursorColor: Colors.white,
+                        decoration: const InputDecoration(
+                          hintText: 'الاسم الكامل',
+                          hintStyle: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w400,
                           ),
-                          cursorColor: Colors.white,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            contentPadding: EdgeInsets.zero,
-                            isDense: true,
-                          ),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 1),
+                          isDense: true,
                         ),
-                      ],
+                      ),
                     ),
                   ),
 
                   // =================================================
-                  // رقم الجوال
+                  // رقم الجوال - TextField حقيقي
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(30),
                     top: y(306),
                     width: w(341),
                     height: h(35),
-                    label: 'رقم الجوال',
-                    onTap: () {
-                      debugPrint('Signup: رقم الجوال');
-                    },
+                    child: Padding(
+                      // نترك مساحة لرمز الهاتف الموجود يمين الصورة
+                      // ومساحة +966 الموجودة يسار الحقل
+                      padding: EdgeInsets.only(left: w(85), right: w(42)),
+                      child: TextField(
+                        keyboardType: TextInputType.phone,
+                        textAlign: TextAlign.right,
+                        textDirection: TextDirection.ltr,
+                        textAlignVertical: TextAlignVertical.center,
+                        style: TextStyle(
+                          fontSize: 11 * (screenWidth / figmaWidth),
+                          color: const Color.fromARGB(255, 152, 158, 152),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        cursorColor: Colors.white,
+                        decoration: const InputDecoration(
+                          hintText: '05XXXXXXXX رقم الجوال',
+                          hintStyle: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 1),
+                          isDense: true,
+                        ),
+                      ),
+                    ),
                   ),
-
                   // =================================================
-                  // البريد الإلكتروني
+                  // البريد الإلكتروني - TextField حقيقي
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(30),
                     top: y(355),
                     width: w(341),
                     height: h(35),
-                    label: 'البريد الإلكتروني',
-                    onTap: () {
-                      debugPrint('Signup: البريد الإلكتروني');
-                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        right: w(42), // مساحة رمز البريد
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        textAlign: TextAlign.right,
+                        textDirection: TextDirection.ltr,
+                        textAlignVertical: TextAlignVertical.center,
+                        style: TextStyle(
+                          fontSize: 11 * (screenWidth / figmaWidth),
+                          color: const Color.fromARGB(255, 135, 141, 137),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        cursorColor: Colors.white,
+                        decoration: const InputDecoration(
+                          hintText: 'البريد الإلكتروني',
+                          hintStyle: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 3),
+                          isDense: true,
+                        ),
+                      ),
+                    ),
                   ),
-
                   // =================================================
-                  // كلمة المرور
+                  // كلمة المرور - TextField حقيقي
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(30),
                     top: y(404),
                     width: w(341),
                     height: h(35),
-                    label: 'كلمة المرور',
-                    onTap: () {
-                      debugPrint('Signup: كلمة المرور');
-                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        right: w(42), // مساحة رمز القفل
+                        left: w(42), // مساحة رمز العين
+                      ),
+                      child: TextField(
+                        obscureText: true,
+                        textAlign: TextAlign.right,
+                        textDirection: TextDirection.rtl,
+                        textAlignVertical: TextAlignVertical.center,
+                        style: TextStyle(
+                          fontSize: 11 * (screenWidth / figmaWidth),
+                          color: const Color.fromARGB(255, 135, 141, 137),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        cursorColor: Colors.white,
+                        decoration: const InputDecoration(
+                          hintText: 'كلمة المرور',
+                          hintStyle: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 3),
+                          isDense: true,
+                        ),
+                      ),
+                    ),
                   ),
-
                   // =================================================
-                  // تأكيد كلمة المرور
+                  // تأكيد كلمة المرور - TextField حقيقي
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(30),
                     top: y(453),
                     width: w(341),
                     height: h(35),
-                    label: 'تأكيد كلمة المرور',
-                    onTap: () {
-                      debugPrint('Signup: تأكيد كلمة المرور');
-                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        right: w(42), // مساحة رمز القفل
+                        left: w(42), // مساحة رمز العين
+                      ),
+                      child: TextField(
+                        obscureText: true,
+                        textAlign: TextAlign.right,
+                        textDirection: TextDirection.rtl,
+                        textAlignVertical: TextAlignVertical.center,
+                        style: TextStyle(
+                          fontSize: 11 * (screenWidth / figmaWidth),
+                          color: const Color.fromARGB(255, 135, 141, 137),
+                          fontWeight: FontWeight.w500,
+                        ),
+                        cursorColor: Colors.white,
+                        decoration: const InputDecoration(
+                          hintText: 'تأكيد كلمة المرور',
+                          hintStyle: TextStyle(
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 135, 141, 137),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(top: 3),
+                          isDense: true,
+                        ),
+                      ),
+                    ),
                   ),
-
                   // =================================================
                   // تاريخ الميلاد - السنة
                   // =================================================
@@ -213,17 +301,67 @@ class _SignupPageState extends State<SignupPage> {
                   // =================================================
                   // تاريخ الميلاد - اليوم
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(204),
                     top: y(502),
                     width: w(77),
                     height: h(34),
-                    label: 'يوم الميلاد',
-                    onTap: () {
-                      debugPrint('Signup: يوم الميلاد');
-                    },
-                  ),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final selectedDay = await showModalBottomSheet<int>(
+                          context: context,
+                          backgroundColor: const Color(0xFF1C1C1C),
+                          builder: (context) {
+                            return SafeArea(
+                              child: ListView.builder(
+                                itemCount: 31,
+                                itemBuilder: (context, index) {
+                                  final day = index + 1;
 
+                                  return ListTile(
+                                    title: Text(
+                                      '$day',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        color: Color.fromARGB(
+                                          255,
+                                          135,
+                                          141,
+                                          137,
+                                        ),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.pop(context, day);
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+
+                        if (selectedDay != null) {
+                          setState(() {
+                            _selectedDay = selectedDay;
+                          });
+                        }
+                      },
+                      child: Center(
+                        child: Text(
+                          _selectedDay?.toString() ?? 'يوم الميلاد',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 11 * (screenWidth / figmaWidth),
+                            color: const Color.fromARGB(255, 135, 141, 137),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   // =================================================
                   // الجنس - أنثى
                   // =================================================

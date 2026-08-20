@@ -10,10 +10,13 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   // =========================================================
-  // حقل الاسم
+  // حقول التسجيل
   // =========================================================
   final TextEditingController _nameController = TextEditingController();
   int? _selectedDay;
+  int? _selectedMonth;
+  int? _selectedYear;
+  String? _selectedGender;
 
   @override
   void dispose() {
@@ -273,31 +276,133 @@ class _SignupPageState extends State<SignupPage> {
                   // =================================================
                   // تاريخ الميلاد - السنة
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(30),
                     top: y(502),
                     width: w(86),
                     height: h(34),
-                    label: 'سنة الميلاد',
-                    onTap: () {
-                      debugPrint('Signup: سنة الميلاد');
-                    },
-                  ),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final currentYear = DateTime.now().year;
 
+                        final selectedYear = await showModalBottomSheet<int>(
+                          context: context,
+                          backgroundColor: const Color(0xFF1C1C1C),
+                          builder: (context) {
+                            return SafeArea(
+                              child: ListView.builder(
+                                itemCount: 100,
+                                itemBuilder: (context, index) {
+                                  final year = currentYear - index;
+
+                                  return ListTile(
+                                    title: Text(
+                                      '$year',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        color: Color.fromARGB(
+                                          255,
+                                          127,
+                                          131,
+                                          127,
+                                        ),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.pop(context, year);
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+
+                        if (selectedYear != null) {
+                          setState(() {
+                            _selectedYear = selectedYear;
+                          });
+                        }
+                      },
+                      child: Center(
+                        child: Text(
+                          _selectedYear?.toString() ?? 'سنة ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 11 * (screenWidth / figmaWidth),
+                            color: const Color.fromARGB(255, 127, 131, 127),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   // =================================================
                   // تاريخ الميلاد - الشهر
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(124),
                     top: y(502),
                     width: w(71),
                     height: h(34),
-                    label: 'شهر الميلاد',
-                    onTap: () {
-                      debugPrint('Signup: شهر الميلاد');
-                    },
-                  ),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final selectedMonth = await showModalBottomSheet<int>(
+                          context: context,
+                          backgroundColor: const Color(0xFF1C1C1C),
+                          builder: (context) {
+                            return SafeArea(
+                              child: ListView.builder(
+                                itemCount: 12,
+                                itemBuilder: (context, index) {
+                                  final month = index + 1;
 
+                                  return ListTile(
+                                    title: Text(
+                                      '$month',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        color: Color.fromARGB(
+                                          255,
+                                          127,
+                                          131,
+                                          127,
+                                        ),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      Navigator.pop(context, month);
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+
+                        if (selectedMonth != null) {
+                          setState(() {
+                            _selectedMonth = selectedMonth;
+                          });
+                        }
+                      },
+                      child: Center(
+                        child: Text(
+                          _selectedMonth?.toString() ?? 'شهر ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 11 * (screenWidth / figmaWidth),
+                            color: const Color.fromARGB(255, 127, 131, 127),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   // =================================================
                   // تاريخ الميلاد - اليوم
                   // =================================================
@@ -351,7 +456,7 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       child: Center(
                         child: Text(
-                          _selectedDay?.toString() ?? 'يوم الميلاد',
+                          _selectedDay?.toString() ?? 'يوم',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 11 * (screenWidth / figmaWidth),
@@ -362,33 +467,78 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                   ),
-                  // =================================================
-                  // الجنس - أنثى
-                  // =================================================
-                  _hitArea(
-                    left: x(30),
-                    top: y(550),
-                    width: w(122),
-                    height: h(34),
-                    label: 'أنثى',
-                    onTap: () {
-                      debugPrint('Signup: أنثى');
-                    },
-                  ),
+// =================================================
+// الجنس - ذكر / أنثى
+// =================================================
+Positioned(
+  left: x(30),
+  top: y(551),
+  width: w(341),
+  height: h(42),
+  child: Row(
+    children: [
+      // ذكر
+      Expanded(
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              _selectedGender = 'male';
+            });
+          },
+          child: Container(
+            height: h(42),
+            decoration: BoxDecoration(
+              color: _selectedGender == 'male'
+    ? const Color.fromARGB(180, 0, 255, 120)
+    : const Color.fromARGB(55, 0, 255, 120),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'ذكر',
+              style: TextStyle(
+                fontSize: 11 * (screenWidth / figmaWidth),
+                color: const Color.fromARGB(255, 127, 131, 127),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+      ),
 
-                  // =================================================
-                  // الجنس - ذكر
-                  // =================================================
-                  _hitArea(
-                    left: x(163),
-                    top: y(550),
-                    width: w(119),
-                    height: h(34),
-                    label: 'ذكر',
-                    onTap: () {
-                      debugPrint('Signup: ذكر');
-                    },
-                  ),
+      SizedBox(width: w(10)),
+
+      // أنثى
+      Expanded(
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              _selectedGender = 'female';
+            });
+          },
+          child: Container(
+            height: h(42),
+            decoration: BoxDecoration(
+              color: _selectedGender == 'female'
+    ? const Color.fromARGB(189, 132, 64, 215)
+    : const Color.fromARGB(60, 70, 20, 130),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'أنثى',
+              style: TextStyle(
+                fontSize: 11 * (screenWidth / figmaWidth),
+                color: const Color.fromARGB(255, 127, 131, 127),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
+  ),
+),
 
                   // =================================================
                   // الموافقة على الشروط والأحكام

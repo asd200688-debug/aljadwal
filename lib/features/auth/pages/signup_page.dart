@@ -17,6 +17,7 @@ class _SignupPageState extends State<SignupPage> {
   int? _selectedMonth;
   int? _selectedYear;
   String? _selectedGender;
+  bool _acceptedTerms = false;
 
   @override
   void dispose() {
@@ -467,78 +468,88 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                   ),
-// =================================================
-// الجنس - ذكر / أنثى
-// =================================================
-Positioned(
-  left: x(30),
-  top: y(551),
-  width: w(341),
-  height: h(42),
-  child: Row(
-    children: [
-      // ذكر
-      Expanded(
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              _selectedGender = 'male';
-            });
-          },
-          child: Container(
-            height: h(42),
-            decoration: BoxDecoration(
-              color: _selectedGender == 'male'
-    ? const Color.fromARGB(180, 0, 255, 120)
-    : const Color.fromARGB(55, 0, 255, 120),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'ذكر',
-              style: TextStyle(
-                fontSize: 11 * (screenWidth / figmaWidth),
-                color: const Color.fromARGB(255, 127, 131, 127),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-      ),
+                  // =================================================
+                  // الجنس - ذكر / أنثى
+                  // =================================================
+                  Positioned(
+                    left: x(30),
+                    top: y(551),
+                    width: w(341),
+                    height: h(42),
+                    child: Row(
+                      children: [
+                        // ذكر
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedGender = 'male';
+                              });
+                            },
+                            child: Container(
+                              height: h(42),
+                              decoration: BoxDecoration(
+                                color: _selectedGender == 'male'
+                                    ? const Color.fromARGB(180, 0, 255, 120)
+                                    : const Color.fromARGB(55, 0, 255, 120),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'ذكر',
+                                style: TextStyle(
+                                  fontSize: 11 * (screenWidth / figmaWidth),
+                                  color: const Color.fromARGB(
+                                    255,
+                                    127,
+                                    131,
+                                    127,
+                                  ),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
 
-      SizedBox(width: w(10)),
+                        SizedBox(width: w(10)),
 
-      // أنثى
-      Expanded(
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              _selectedGender = 'female';
-            });
-          },
-          child: Container(
-            height: h(42),
-            decoration: BoxDecoration(
-              color: _selectedGender == 'female'
-    ? const Color.fromARGB(189, 132, 64, 215)
-    : const Color.fromARGB(60, 70, 20, 130),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'أنثى',
-              style: TextStyle(
-                fontSize: 11 * (screenWidth / figmaWidth),
-                color: const Color.fromARGB(255, 127, 131, 127),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-      ),
-    ],
-  ),
-),
+                        // أنثى
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedGender = 'female';
+                              });
+                            },
+                            child: Container(
+                              height: h(42),
+                              decoration: BoxDecoration(
+                                color: _selectedGender == 'female'
+                                    ? const Color.fromARGB(189, 132, 64, 215)
+                                    : const Color.fromARGB(60, 70, 20, 130),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'أنثى',
+                                style: TextStyle(
+                                  fontSize: 11 * (screenWidth / figmaWidth),
+                                  color: const Color.fromARGB(
+                                    255,
+                                    127,
+                                    131,
+                                    127,
+                                  ),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
                   // =================================================
                   // الموافقة على الشروط والأحكام

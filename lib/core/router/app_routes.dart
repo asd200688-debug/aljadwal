@@ -3,8 +3,15 @@ class AppRoutes {
   static const String welcome = '/';
 
   // Authentication
+
   static const String login = '/login';
+
   static const String signup = '/signup';
+
+  static const String terms = '/terms';
+
+  static const String privacy = '/privacy';
+
   // Home
   static const String home = '/home';
 

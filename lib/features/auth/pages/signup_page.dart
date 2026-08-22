@@ -18,7 +18,6 @@ class _SignupPageState extends State<SignupPage> {
   int? _selectedYear;
   String? _selectedGender;
   bool _acceptedTerms = false;
-
   @override
   void dispose() {
     _nameController.dispose();
@@ -552,19 +551,34 @@ class _SignupPageState extends State<SignupPage> {
                   ),
 
                   // =================================================
-                  // الموافقة على الشروط والأحكام
+                  // الموافقة على الشروط والأحكام وسياسة الخصوصية
                   // =================================================
-                  _hitArea(
+                  Positioned(
                     left: x(354),
                     top: y(607),
                     width: w(13),
                     height: h(13),
-                    label: 'الموافقة على الشروط والأحكام',
-                    onTap: () {
-                      debugPrint('Signup: الموافقة على الشروط والأحكام');
-                    },
+                    child: Transform.scale(
+                      scale: 0.8,
+                      child: Checkbox(
+                        value: _acceptedTerms,
+                        onChanged: (value) {
+                          setState(() {
+                            _acceptedTerms = value ?? false;
+                          });
+                        },
+                        activeColor: const Color.fromARGB(255, 0, 220, 110),
+                        checkColor: Colors.black,
+                        side: const BorderSide(
+                          color: Color.fromARGB(255, 0, 220, 110),
+                          width: 1.5,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ),
                   ),
-
                   // =================================================
                   // إنشاء الحساب
                   // =================================================

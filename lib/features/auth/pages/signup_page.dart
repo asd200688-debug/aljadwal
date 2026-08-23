@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:aljadwal/core/router/app_routes.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -18,6 +17,7 @@ class _SignupPageState extends State<SignupPage> {
   int? _selectedYear;
   String? _selectedGender;
   bool _acceptedTerms = false;
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -79,7 +79,19 @@ class _SignupPageState extends State<SignupPage> {
                       fit: BoxFit.fill,
                     ),
                   ),
-
+                  // =================================================
+                  // الرجوع إلى تسجيل الدخول
+                  // =================================================
+                  _hitArea(
+                    left: x(13),
+                    top: y(12),
+                    width: w(31),
+                    height: h(31),
+                    label: 'الرجوع',
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                   // =================================================
                   // الاسم - TextField حقيقي
                   // =================================================
@@ -579,34 +591,6 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                     ),
                   ),
-
-                  // =================================================
-                  // الشروط والأحكام
-                  // =================================================
-                  _hitArea(
-                    left: x(200),
-                    top: y(607),
-                    width: w(79),
-                    height: h(16),
-                    label: 'الشروط والأحكام',
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.terms);
-                    },
-                  ),
-
-                  // =================================================
-                  // سياسة الخصوصية
-                  // =================================================
-                  _hitArea(
-                    left: x(108),
-                    top: y(607),
-                    width: w(79),
-                    height: h(16),
-                    label: 'سياسة الخصوصية',
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.privacy);
-                    },
-                  ),
                   // =================================================
                   // إنشاء الحساب
                   // =================================================
@@ -687,7 +671,7 @@ class _SignupPageState extends State<SignupPage> {
                     height: h(14),
                     label: 'تسجيل الدخول',
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.login);
+                      Navigator.pop(context);
                     },
                   ),
                 ],

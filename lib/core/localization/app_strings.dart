@@ -22,6 +22,11 @@ class AppStrings {
       'easy_scheduling_subtitle': 'احجز أو أنشئ في خطوات بسيطة',
       'terms': 'الشروط والأحكام',
       'privacy': 'سياسة الخصوصية',
+      'birth_year': 'سنة',
+      'birth_month': 'شهر',
+      'birth_day': 'يوم',
+      'male': 'ذكر',
+      'female': 'أنثى',
       'language_ar': 'AR',
     },
 
@@ -47,6 +52,11 @@ class AppStrings {
       'easy_scheduling_subtitle': 'Book or create in a few simple steps',
       'terms': 'Terms & Conditions',
       'privacy': 'Privacy Policy',
+      'birth_year': 'Year',
+      'birth_month': 'Month',
+      'birth_day': 'Day',
+      'male': 'Male',
+      'female': 'Female',
       'language_ar': 'EN',
     },
   };

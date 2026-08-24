@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:aljadwal/core/localization/app_language.dart';
+import 'package:aljadwal/core/localization/app_strings.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -37,6 +39,11 @@ class _SignupPageState extends State<SignupPage> {
     // =========================================================
     const imageWidth = 944.0;
     const imageHeight = 1666.0;
+    final language = AppLanguageScope.of(context);
+    final languageCode = language.locale.languageCode;
+    final isArabic = language.isArabic;
+
+    final textDirection = isArabic ? TextDirection.rtl : TextDirection.ltr;
 
     return Scaffold(
       body: LayoutBuilder(
@@ -105,8 +112,8 @@ class _SignupPageState extends State<SignupPage> {
                       padding: EdgeInsets.only(right: w(42)),
                       child: TextField(
                         controller: _nameController,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.start,
+                        textDirection: textDirection,
                         textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(
                           fontSize: 11 * (screenWidth / figmaWidth),
@@ -144,8 +151,8 @@ class _SignupPageState extends State<SignupPage> {
                       padding: EdgeInsets.only(left: w(85), right: w(42)),
                       child: TextField(
                         keyboardType: TextInputType.phone,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.ltr,
+                        textAlign: TextAlign.start,
+                        textDirection: textDirection,
                         textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(
                           fontSize: 11 * (screenWidth / figmaWidth),
@@ -182,8 +189,8 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       child: TextField(
                         keyboardType: TextInputType.emailAddress,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.ltr,
+                        textAlign: TextAlign.start,
+                        textDirection: textDirection,
                         textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(
                           fontSize: 11 * (screenWidth / figmaWidth),
@@ -221,8 +228,8 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       child: TextField(
                         obscureText: true,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.start,
+                        textDirection: textDirection,
                         textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(
                           fontSize: 11 * (screenWidth / figmaWidth),
@@ -260,8 +267,8 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       child: TextField(
                         obscureText: true,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.start,
+                        textDirection: textDirection,
                         textAlignVertical: TextAlignVertical.center,
                         style: TextStyle(
                           fontSize: 11 * (screenWidth / figmaWidth),
@@ -340,7 +347,8 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       child: Center(
                         child: Text(
-                          _selectedYear?.toString() ?? 'سنة ',
+                          _selectedYear?.toString() ??
+                              AppStrings.get(languageCode, 'birth_year'),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 11 * (screenWidth / figmaWidth),
@@ -404,7 +412,8 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       child: Center(
                         child: Text(
-                          _selectedMonth?.toString() ?? 'شهر ',
+                          _selectedMonth?.toString() ??
+                              AppStrings.get(languageCode, 'birth_month'),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 11 * (screenWidth / figmaWidth),
@@ -468,7 +477,8 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       child: Center(
                         child: Text(
-                          _selectedDay?.toString() ?? 'يوم',
+                          _selectedDay?.toString() ??
+                              AppStrings.get(languageCode, 'birth_day'),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 11 * (screenWidth / figmaWidth),
@@ -507,7 +517,7 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                               alignment: Alignment.center,
                               child: Text(
-                                'ذكر',
+                                AppStrings.get(languageCode, 'male'),
                                 style: TextStyle(
                                   fontSize: 11 * (screenWidth / figmaWidth),
                                   color: const Color.fromARGB(
@@ -543,7 +553,7 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                               alignment: Alignment.center,
                               child: Text(
-                                'أنثى',
+                                AppStrings.get(languageCode, 'female'),
                                 style: TextStyle(
                                   fontSize: 11 * (screenWidth / figmaWidth),
                                   color: const Color.fromARGB(
@@ -602,62 +612,6 @@ class _SignupPageState extends State<SignupPage> {
                     label: 'إنشاء الحساب',
                     onTap: () {
                       debugPrint('Signup: إنشاء الحساب');
-                    },
-                  ),
-
-                  // =================================================
-                  // Apple
-                  // =================================================
-                  _hitArea(
-                    left: x(30),
-                    top: y(723),
-                    width: w(75),
-                    height: h(59),
-                    label: 'إنشاء الحساب بواسطة Apple',
-                    onTap: () {
-                      debugPrint('Signup: Apple');
-                    },
-                  ),
-
-                  // =================================================
-                  // Google
-                  // =================================================
-                  _hitArea(
-                    left: x(116),
-                    top: y(723),
-                    width: w(75),
-                    height: h(59),
-                    label: 'إنشاء الحساب بواسطة Google',
-                    onTap: () {
-                      debugPrint('Signup: Google');
-                    },
-                  ),
-
-                  // =================================================
-                  // STC
-                  // =================================================
-                  _hitArea(
-                    left: x(205),
-                    top: y(723),
-                    width: w(75),
-                    height: h(59),
-                    label: 'إنشاء الحساب بواسطة STC',
-                    onTap: () {
-                      debugPrint('Signup: STC');
-                    },
-                  ),
-
-                  // =================================================
-                  // رقم الجوال
-                  // =================================================
-                  _hitArea(
-                    left: x(294),
-                    top: y(723),
-                    width: w(75),
-                    height: h(59),
-                    label: 'إنشاء الحساب بواسطة رقم الجوال',
-                    onTap: () {
-                      debugPrint('Signup: رقم الجوال');
                     },
                   ),
 

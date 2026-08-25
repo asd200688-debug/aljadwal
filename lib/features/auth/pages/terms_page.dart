@@ -8,6 +8,12 @@ class TermsPage extends StatelessWidget {
     const imageWidth = 944.0;
     const imageHeight = 1666.0;
 
+    final languageCode = Localizations.localeOf(context).languageCode;
+
+    final termsImage = languageCode == 'en'
+        ? 'assets/images/16- terms_conditions_en.png'
+        : 'assets/images/16_terms.png';
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: LayoutBuilder(
@@ -21,7 +27,7 @@ class TermsPage extends StatelessWidget {
               width: screenWidth,
               height: imageHeightOnScreen,
               child: Image.asset(
-                'assets/images/16_terms.png',
+                termsImage,
                 width: screenWidth,
                 height: imageHeightOnScreen,
                 fit: BoxFit.fill,

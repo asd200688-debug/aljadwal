@@ -8,6 +8,12 @@ class PrivacyPage extends StatelessWidget {
     const imageWidth = 944.0;
     const imageHeight = 1666.0;
 
+    final languageCode = Localizations.localeOf(context).languageCode;
+
+    final privacyImage = languageCode == 'en'
+        ? 'assets/images/17- privacy_policy_en.png'
+        : 'assets/images/17_privacy.png';
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: LayoutBuilder(
@@ -21,7 +27,7 @@ class PrivacyPage extends StatelessWidget {
               width: screenWidth,
               height: imageHeightOnScreen,
               child: Image.asset(
-                'assets/images/17_privacy.png',
+                privacyImage,
                 width: screenWidth,
                 height: imageHeightOnScreen,
                 fit: BoxFit.fill,

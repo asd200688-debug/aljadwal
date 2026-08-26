@@ -45,6 +45,9 @@ class _SignupPageState extends State<SignupPage> {
 
     final textDirection = isArabic ? TextDirection.rtl : TextDirection.ltr;
 
+    final signupImage = languageCode == 'en'
+        ? 'assets/images/13_signup_en.png'
+        : 'assets/images/13_signup.png';
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -79,13 +82,9 @@ class _SignupPageState extends State<SignupPage> {
                 children: [
                   // =================================================
                   // الصورة الكاملة لصفحة تسجيل الحساب
-                  // =================================================
                   Positioned.fill(
-                    child: Image.asset(
-                      'assets/images/13_signup.png',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                    child: Image.asset(signupImage, fit: BoxFit.fill),
+                  ), // Positioned.fill
                   // =================================================
                   // الرجوع إلى تسجيل الدخول
                   // =================================================

@@ -303,36 +303,66 @@ class _SignupPageState extends State<SignupPage> {
                       onTap: () async {
                         final currentYear = DateTime.now().year;
 
-                        final selectedYear = await showModalBottomSheet<int>(
+                        final selectedYear = await showDialog<int>(
                           context: context,
-                          backgroundColor: const Color(0xFF1C1C1C),
                           builder: (context) {
-                            return SafeArea(
-                              child: ListView.builder(
-                                itemCount: 100,
-                                itemBuilder: (context, index) {
-                                  final year = currentYear - index;
-
-                                  return ListTile(
-                                    title: Text(
-                                      '$year',
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 11,
-                                        color: Color.fromARGB(
-                                          255,
-                                          127,
-                                          131,
-                                          127,
-                                        ),
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                            return Dialog(
+                              backgroundColor: Colors.transparent,
+                              insetPadding: EdgeInsets.symmetric(
+                                horizontal: 178 * (screenWidth / figmaWidth),
+                                vertical: 120,
+                              ),
+                              child: Container(
+                                height: 280 * (screenWidth / figmaWidth),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF1C1C1C),
+                                  borderRadius: BorderRadius.circular(14),
+                                  border: Border.all(
+                                    color: const Color.fromARGB(
+                                      90,
+                                      0,
+                                      220,
+                                      110,
                                     ),
-                                    onTap: () {
-                                      Navigator.pop(context, year);
-                                    },
-                                  );
-                                },
+                                    width: 1,
+                                  ),
+                                ),
+                                child: ListView.builder(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 4 * (screenWidth / figmaWidth),
+                                  ),
+                                  itemCount: 100,
+                                  itemBuilder: (context, index) {
+                                    final year = currentYear - index;
+
+                                    return SizedBox(
+                                      height: 30 * (screenWidth / figmaWidth),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context, year);
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            '$year',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize:
+                                                  11 *
+                                                  (screenWidth / figmaWidth),
+                                              color: const Color.fromARGB(
+                                                255,
+                                                127,
+                                                131,
+                                                127,
+                                              ),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             );
                           },
@@ -368,36 +398,66 @@ class _SignupPageState extends State<SignupPage> {
                     height: h(34),
                     child: GestureDetector(
                       onTap: () async {
-                        final selectedMonth = await showModalBottomSheet<int>(
+                        final selectedMonth = await showDialog<int>(
                           context: context,
-                          backgroundColor: const Color(0xFF1C1C1C),
                           builder: (context) {
-                            return SafeArea(
-                              child: ListView.builder(
-                                itemCount: 12,
-                                itemBuilder: (context, index) {
-                                  final month = index + 1;
-
-                                  return ListTile(
-                                    title: Text(
-                                      '$month',
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 11,
-                                        color: Color.fromARGB(
-                                          255,
-                                          127,
-                                          131,
-                                          127,
-                                        ),
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                            return Dialog(
+                              backgroundColor: Colors.transparent,
+                              insetPadding: EdgeInsets.symmetric(
+                                horizontal: 178 * (screenWidth / figmaWidth),
+                                vertical: 120,
+                              ),
+                              child: Container(
+                                height: 280 * (screenWidth / figmaWidth),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF1C1C1C),
+                                  borderRadius: BorderRadius.circular(14),
+                                  border: Border.all(
+                                    color: const Color.fromARGB(
+                                      90,
+                                      0,
+                                      220,
+                                      110,
                                     ),
-                                    onTap: () {
-                                      Navigator.pop(context, month);
-                                    },
-                                  );
-                                },
+                                    width: 1,
+                                  ),
+                                ),
+                                child: ListView.builder(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 4 * (screenWidth / figmaWidth),
+                                  ),
+                                  itemCount: 12,
+                                  itemBuilder: (context, index) {
+                                    final month = index + 1;
+
+                                    return SizedBox(
+                                      height: 30 * (screenWidth / figmaWidth),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context, month);
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            '$month',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize:
+                                                  11 *
+                                                  (screenWidth / figmaWidth),
+                                              color: const Color.fromARGB(
+                                                255,
+                                                127,
+                                                131,
+                                                127,
+                                              ),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             );
                           },
@@ -433,36 +493,66 @@ class _SignupPageState extends State<SignupPage> {
                     height: h(34),
                     child: GestureDetector(
                       onTap: () async {
-                        final selectedDay = await showModalBottomSheet<int>(
+                        final selectedDay = await showDialog<int>(
                           context: context,
-                          backgroundColor: const Color(0xFF1C1C1C),
                           builder: (context) {
-                            return SafeArea(
-                              child: ListView.builder(
-                                itemCount: 31,
-                                itemBuilder: (context, index) {
-                                  final day = index + 1;
-
-                                  return ListTile(
-                                    title: Text(
-                                      '$day',
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 11,
-                                        color: Color.fromARGB(
-                                          255,
-                                          135,
-                                          141,
-                                          137,
-                                        ),
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                            return Dialog(
+                              backgroundColor: Colors.transparent,
+                              insetPadding: EdgeInsets.symmetric(
+                                horizontal: 178 * (screenWidth / figmaWidth),
+                                vertical: 120,
+                              ),
+                              child: Container(
+                                height: 280 * (screenWidth / figmaWidth),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF1C1C1C),
+                                  borderRadius: BorderRadius.circular(14),
+                                  border: Border.all(
+                                    color: const Color.fromARGB(
+                                      90,
+                                      0,
+                                      220,
+                                      110,
                                     ),
-                                    onTap: () {
-                                      Navigator.pop(context, day);
-                                    },
-                                  );
-                                },
+                                    width: 1,
+                                  ),
+                                ),
+                                child: ListView.builder(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 4 * (screenWidth / figmaWidth),
+                                  ),
+                                  itemCount: 31,
+                                  itemBuilder: (context, index) {
+                                    final day = index + 1;
+
+                                    return SizedBox(
+                                      height: 30 * (screenWidth / figmaWidth),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context, day);
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            '$day',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize:
+                                                  11 *
+                                                  (screenWidth / figmaWidth),
+                                              color: const Color.fromARGB(
+                                                255,
+                                                127,
+                                                131,
+                                                127,
+                                              ),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             );
                           },
@@ -515,18 +605,37 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               alignment: Alignment.center,
-                              child: Text(
-                                AppStrings.get(languageCode, 'male'),
-                                style: TextStyle(
-                                  fontSize: 11 * (screenWidth / figmaWidth),
-                                  color: const Color.fromARGB(
-                                    255,
-                                    127,
-                                    131,
-                                    127,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.man,
+                                    size: 18 * (screenWidth / figmaWidth),
+                                    color: const Color.fromARGB(
+                                      255,
+                                      127,
+                                      131,
+                                      127,
+                                    ),
                                   ),
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                  SizedBox(
+                                    width: 5 * (screenWidth / figmaWidth),
+                                  ),
+                                  Text(
+                                    AppStrings.get(languageCode, 'male'),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 11 * (screenWidth / figmaWidth),
+                                      color: const Color.fromARGB(
+                                        255,
+                                        127,
+                                        131,
+                                        127,
+                                      ),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -546,23 +655,42 @@ class _SignupPageState extends State<SignupPage> {
                               height: h(42),
                               decoration: BoxDecoration(
                                 color: _selectedGender == 'female'
-                                    ? const Color.fromARGB(189, 132, 64, 215)
-                                    : const Color.fromARGB(60, 70, 20, 130),
+                                    ? const Color.fromARGB(188, 150, 114, 194)
+                                    : const Color.fromARGB(59, 77, 25, 142),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               alignment: Alignment.center,
-                              child: Text(
-                                AppStrings.get(languageCode, 'female'),
-                                style: TextStyle(
-                                  fontSize: 11 * (screenWidth / figmaWidth),
-                                  color: const Color.fromARGB(
-                                    255,
-                                    127,
-                                    131,
-                                    127,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.woman,
+                                    size: 18 * (screenWidth / figmaWidth),
+                                    color: const Color.fromARGB(
+                                      255,
+                                      127,
+                                      131,
+                                      127,
+                                    ),
                                   ),
-                                  fontWeight: FontWeight.w500,
-                                ),
+                                  SizedBox(
+                                    width: 5 * (screenWidth / figmaWidth),
+                                  ),
+                                  Text(
+                                    AppStrings.get(languageCode, 'female'),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 11 * (screenWidth / figmaWidth),
+                                      color: const Color.fromARGB(
+                                        255,
+                                        127,
+                                        131,
+                                        127,
+                                      ),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
